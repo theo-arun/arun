@@ -1,7 +1,5 @@
-FROM alpine:3.19
-
-RUN apk add --no-cache busybox-extras
-
-EXPOSE 4000
-
-CMD ["sh", "-c", "while true; do echo 'Hello' | nc -l -p 4000; done"]
+FROM eclipse-temurin:21-jdk
+WORKDIR /app
+COPY target/demo-0.0.1-SNAPSHOT.jar app.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "app.jar"]
